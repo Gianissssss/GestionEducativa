@@ -1,20 +1,47 @@
 //Creamos las clases Persona, Estudiante, Profesor y PersonalServicio
+//CLASE PERSONA
 class Persona {
-    constructor( nombre, apellido, dni, direccion, rol) {
+    constructor( nombre, apellidos, numId,estadoCivil) {
         this.nombre = nombre;
-        this.apellido = apellido;
-        this.rol = rol;
-        this.dni = dni;
-        this.direccion = direccion;
+        this.apellidos = apellidos;
+        this.numId = numId;
+        this.estadoCivil = estadoCivil;
+    }
+    
+    cambiarEstadoCivil(nuevoEstadoCivil) {
+        this.estadoCivil = nuevoEstadoCivil;
+    }
+
+    imprimirInformacion() {
+        console.log(`Nombre: ${this.nombre} ${this.apellidos}`);
+        console.log(`Numero de identificacion: ${this.numeroIdentificacion}`);
+        console.log(`Estado civil: ${this.estadoCivil}`);
     }
 }
-
+// ------ CLASE EMPLEADO --------
+class Empleado extends Persona {
+    constructor(idEmpleado, nombre, apellidos,numId, estadoCivil, anioEntrada, numDespacho){
+        super(nombre, apellidos,numId, estadoCivil);
+        this.idEmpleado = idEmpleado;
+        this.anioEntrada = anioEntrada;
+        this.numDespacho =numDespacho;
+    }
+    reasignarDespacho(nuevoNumDespacho) {
+        this.numDespacho = nuevoNumDespacho;
+      }
+    
+    imprimirInformacion() {
+        super.imprimirInformacion();
+        console.log(`Año de incorporacion: ${this.anioEntrada}`);
+        console.log(`Numero de despacho: ${this.numDespacho}`);
+    }
+}
+// ------- CLASE ESTUDIANTE ------
 class Estudiante extends Persona {
-    constructor(idEstudiante,nombre,apellido,dni,direccion,rol, legajo, curso, carrera) {
-        super(nombre,apellido,dni,direccion,rol);
+    constructor(idEstudiante,nombre, apellidos, numId,estadoCivil,cursoMatriculado, carrera) {
+        super(nombre, apellidos, numId,estadoCivil);
         this.idEstudiante = idEstudiante;
-        this.legajo = legajo;
-        this.curso = curso;
+        this.cursoMatriculado = cursoMatriculado;
         this.carrera = carrera;
         this.asistencia = {
             presente: false,
@@ -23,9 +50,20 @@ class Estudiante extends Persona {
         };
         this.equivalencias = [];
     }
+
+    cambiarCurso(nuevoCurso) {
+        this.cursoMatriculado = nuevoCurso;
+    }
+    
+    imprimirInformacion() {
+        super.imprimirInformacion();
+        console.log(`Curso matriculado: ${this.cursoMatriculado}`);
+    }
+
     darPresente(estado) {
         this.asistencia[estado] = true;
     }
+
     rendirMateria(){
         let nota = prompt("¿Que puntaje final tiene el alumno?");
         if(nota<=6){
@@ -34,37 +72,48 @@ class Estudiante extends Persona {
             alert("El alumno no tiene que rendir");
         }
     }
+
     solicitarEquivalencias(){
     const nuevasEquivalencias = prompt(`Introduce las nuevas equivalencias para ${this.nombre} separadas por comas:`).split(',');
     this.equivalencias = this.equivalencias.concat(nuevasEquivalencias);
     }
     
 }
-
-class Profesor extends Persona {
-    constructor(idProfesor,nombre,apellido, dni, direccion,rol, asignatura, nivel, carrera) {
-        super( nombre, apellido, dni,direccion, rol);
+// ------- CLASE PROFESOR -------
+class Profesor extends Empleado {
+    constructor(idProfesor,idEmpleado, nombre, apellidos,numId, estadoCivil, anioEntrada, numDespacho, departamento) {
+        super(idEmpleado, nombre, apellidos,numId, estadoCivil, anioEntrada, numDespacho);
         this.idProfesor = idProfesor;
-        this.asignatura = asignatura;
-        this.nivel = nivel;
-        this.carrera = carrera;
+        this.departamento = departamento;
         this.estudiantes = [];
     }
+
+    cambiarDepartamento(nuevoDepartamento) {
+        this.departamento = nuevoDepartamento;
+    }
+    
+    imprimirInformacion() {
+        super.imprimirInformacion();
+        console.log(`Departamento: ${this.departamento}`);
+    }
+
     agregarEstudiante(estudiante){
         this.estudiantes.push(estudiante);
     }
+
     tomarAsistencia() {
         this.estudiantes.forEach((estudiante) => {
           const estado = prompt(`Elejir el estado de la asistencia del estudiante ${estudiante.nombre}: Presente, Ausente o Tardío.`);
           estudiante.darPresente(estado.toLowerCase());
         });
-      }
+    }
 }
-
-class PersonalServicio extends Persona {
-    constructor(idPersonal,nombre,apellido, dni, direccion,rol, area) {
-        super(nombre,apellido, dni, direccion,rol);
+// ---- CLASE PERSONALSERVICIO -----
+class PersonalServicio extends Empleado {
+    constructor(idPersonal,idEmpleado, nombre, apellidos,numId, estadoCivil, anioEntrada, numDespacho, area, seccionAsignada) {
+        super(idEmpleado, nombre, apellidos,numId, estadoCivil, anioEntrada, numDespacho);
         this.idPersonal =idPersonal;
+        this.seccionAsignada = seccionAsignada;
         this.area = area;
         this.aulasSucias = [
             false,
@@ -73,6 +122,16 @@ class PersonalServicio extends Persona {
             false
           ];
     }
+
+    cambiarSeccion(nuevaSeccion) {
+        this.seccionAsignada = nuevaSeccion;
+    }
+    
+    imprimirInformacion() {
+        super.imprimirInformacion();
+        console.log(`Seccion asignada: ${this.seccionAsignada}`);
+    }
+
     actualizarCampus() {
         if (this.area === "Secretaria") {
           console.log("El campus ha sido actualizado");
@@ -80,6 +139,7 @@ class PersonalServicio extends Persona {
           console.log("Usted no puede actualizar el campus");
         }
     }
+
     ordenarAulas() {
         let sector = prompt("¿A que sector del personal de servicio pertenece?");
         if(sector=="porteria"){
@@ -95,6 +155,37 @@ class PersonalServicio extends Persona {
         }
       }
 }
+
+// ------ CLASE CENTRO EDUCATIVO -----
+class CentroEducativo {
+    constructor() {
+      this.personas = [];
+    }
+  
+    darDeAltaPersona(persona) {
+      this.personas.push(persona);
+    }
+  
+    darDeBajaPersona(numeroIdentificacion) {
+      const index = this.personas.findIndex(persona => persona.numeroIdentificacion === numeroIdentificacion);
+      if (index!== -1) {
+        this.personas.splice(index, 1);
+      }
+    }
+  
+    imprimirInformacion() {
+      this.personas.sort((a, b) => a.apellidos.localeCompare(b.apellidos));
+      this.personas.forEach(persona => persona.imprimirInformacion());
+    }
+  
+    buscarPersona(numeroIdentificacion) {
+      return this.personas.find(persona => persona.numeroIdentificacion === numeroIdentificacion);
+    }
+  
+    filtrarPersonas(tipoPersona) {
+      return this.personas.filter(persona => persona instanceof tipoPersona);
+    }
+  }
 //ejemplos
 const personal1 = new PersonalServicio (1234,'Juan','Carlos',2345675,'Barrio las lajas','Personal de Servicio','porteria');
 const estudiante1 = new Estudiante (567,'Maria','Lagos',123456,'Cordoba','estudiante',123123,'programacion','desarrollo full stack');
@@ -108,3 +199,18 @@ const profesor1 = new Profesor (23232,'Alejandro','Arriagada',138829,'salvador',
 //estudiante1.solicitarEquivalencias();
 //console.log (estudiante1.equivalencias);
 //personal1.ordenarAulas();
+// const centro = new CentroEducativo();
+
+ const persona1 = new Persona("Juan", "Pérez", "12345678A", "soltero");
+ const persona2 = new Empleado("María", "González", "87654321B", "casado", 2020, 123);
+ const persona3 = new Estudiante("Carlos", "Rodríguez", "45678901C", "soltero", "Informática");
+ const persona4 = new Profesor("Ana", "López", "98765432D", "casado", 2015, 456, "Matemáticas");
+ const persona5 = new PersonalServicio("Pedro", "Gómez", "65412378E", "soltero", 2018, 789, "Administración");
+
+// centro.altaPersona(persona1);
+// centro.altaPersona(persona2);
+// centro.altaPersona(persona3);
+// centro.altaPersona(persona4);
+// centro.altaPersona(persona5);
+
+// centro.imprimirInformacion();
