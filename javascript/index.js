@@ -14,7 +14,7 @@ class Persona {
 
     imprimirInformacion() {
         console.log(`Nombre: ${this.nombre} ${this.apellidos}`);
-        console.log(`Numero de identificacion: ${this.numeroIdentificacion}`);
+        console.log(`Numero de identificacion: ${this.numId}`);
         console.log(`Estado civil: ${this.estadoCivil}`);
     }
 }
@@ -185,6 +185,10 @@ class CentroEducativo {
     filtrarPersonas(tipoPersona) {
       return this.personas.filter(persona => persona instanceof tipoPersona);
     }
+
+    modificarPersona(numId, nombre, apellido, dni, estadoCivil) {
+        
+    }
   }
 //ejemplos
 const personal1 = new PersonalServicio (1234,'Juan','Carlos',2345675,'Barrio las lajas','Personal de Servicio','porteria');
@@ -201,7 +205,7 @@ const profesor1 = new Profesor (23232,'Alejandro','Arriagada',138829,'salvador',
 //personal1.ordenarAulas();
 // const centro = new CentroEducativo();
 
- const persona1 = new Persona("Juan", "Pérez", "12345678A", "soltero");
+//  const persona1 = new Persona("Juan", "Pérez", "12345678A", "soltero");
  const persona2 = new Empleado("María", "González", "87654321B", "casado", 2020, 123);
  const persona3 = new Estudiante("Carlos", "Rodríguez", "45678901C", "soltero", "Informática");
  const persona4 = new Profesor("Ana", "López", "98765432D", "casado", 2015, 456, "Matemáticas");
