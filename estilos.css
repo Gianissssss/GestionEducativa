@@ -9,28 +9,6 @@ header {
     text-align: center;
     padding: 10px;
 }
-nav {
-    background-color: #f2f2f2;
-    padding: 10px;
-}
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-nav ul li {
-    display: inline;
-    margin-right: 10px;
-}
-section {
-    margin-bottom: 20px;
-}
-footer {
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    padding: 10px;
-}
-
 .form-signin {
     max-width: 330px;
     padding: 1rem;
@@ -44,8 +22,29 @@ footer {
 *, ::after, ::before {
     box-sizing: border-box;
 }
-user agent stylesheet
 main {
     display: block;
     unicode-bidi: isolate;
+}
+
+table{
+    color: black;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    align-items: center;
+    display: inline-block;
+    padding: 3px;
+    border-radius: 5px;
+}
+table thead{
+    background-color:#0e0f4b;
+    color: aliceblue;
+    margin: 5px;
+}
+table thead tr th{
+    padding: 5px;
+}
+
+table tbody{
+    margin: 5px;
 }

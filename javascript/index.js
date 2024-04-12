@@ -8,8 +8,10 @@ class Persona {
         this.estadoCivil = estadoCivil;
     }
     
-    cambiarEstadoCivil(nuevoEstadoCivil) {
+    cambiarEstadoCivil() {
+        const nuevoEstadoCivil = prompt("Ingrese nuevo estado civil");
         this.estadoCivil = nuevoEstadoCivil;
+        alert("Se ha cambiado el estado civil con exito");
     }
 
     imprimirInformacion() {
@@ -27,7 +29,9 @@ class Empleado extends Persona {
         this.numDespacho =numDespacho;
     }
     reasignarDespacho(nuevoNumDespacho) {
+        let nuevoNumDespacho = prompt("Igrese nuevo numero de despacho");
         this.numDespacho = nuevoNumDespacho;
+        alert("Se asigno un numero de despacho");
       }
     
     imprimirInformacion() {
@@ -52,7 +56,9 @@ class Estudiante extends Persona {
     }
 
     cambiarCurso(nuevoCurso) {
+        let nuevoCurso = prompt("Ingrese nuevo curso");
         this.cursoMatriculado = nuevoCurso;
+        alert("Se asigno un nuevo curso");
     }
     
     imprimirInformacion() {
@@ -62,6 +68,7 @@ class Estudiante extends Persona {
 
     darPresente(estado) {
         this.asistencia[estado] = true;
+        alert("el alumno esta presente");
     }
 
     rendirMateria(){
@@ -89,7 +96,9 @@ class Profesor extends Empleado {
     }
 
     cambiarDepartamento(nuevoDepartamento) {
+        let nuevoDepartamento = prompt("Ingrese un nuevo departamento");
         this.departamento = nuevoDepartamento;
+        alert("Se cambio a un nuevo departamento");
     }
     
     imprimirInformacion() {
@@ -98,7 +107,9 @@ class Profesor extends Empleado {
     }
 
     agregarEstudiante(estudiante){
+        let estudiante = prompt("Ingrese nombre del nuevo estudiante");
         this.estudiantes.push(estudiante);
+        alert("El estudiante ha sido agregado con exito");
     }
 
     tomarAsistencia() {
@@ -124,7 +135,9 @@ class PersonalServicio extends Empleado {
     }
 
     cambiarSeccion(nuevaSeccion) {
+        let nuevaSeccion = prompt("Ingrese la nueva seccion");
         this.seccionAsignada = nuevaSeccion;
+        alert("Se ha cambiado la seccion con exito");
     }
     
     imprimirInformacion() {
@@ -134,9 +147,9 @@ class PersonalServicio extends Empleado {
 
     actualizarCampus() {
         if (this.area === "Secretaria") {
-          console.log("El campus ha sido actualizado");
+          alert("El campus ha sido actualizado");
         } else {
-          console.log("Usted no puede actualizar el campus");
+          alert("Usted no puede actualizar el campus");
         }
     }
 
@@ -163,7 +176,10 @@ class CentroEducativo {
     }
   
     darDeAltaPersona(persona) {
+        let persona = prompt("Ingrese nueva persona");
       this.personas.push(persona);
+      alert("La persona ha sido agregada con exito");
+
     }
   
     darDeBajaPersona(numeroIdentificacion) {
@@ -179,42 +195,47 @@ class CentroEducativo {
     }
   
     buscarPersona(numeroIdentificacion) {
+      let  numeroIdentificacion = prompt("Ingrese numero de identificacion");
+      alert("La persona es: ");
       return this.personas.find(persona => persona.numeroIdentificacion === numeroIdentificacion);
+      
     }
   
     filtrarPersonas(tipoPersona) {
+        let tipoPersona = prompt("Ingrese el tipo de persona: estudiante, profesor, personalservicio");
       return this.personas.filter(persona => persona instanceof tipoPersona);
     }
 
-    modificarPersona(numId, nombre, apellido, dni, estadoCivil) {
-        
-    }
+    
   }
+
+
 //ejemplos
-const personal1 = new PersonalServicio (1234,'Juan','Carlos',2345675,'Barrio las lajas','Personal de Servicio','porteria');
-const estudiante1 = new Estudiante (567,'Maria','Lagos',123456,'Cordoba','estudiante',123123,'programacion','desarrollo full stack');
-const profesor1 = new Profesor (23232,'Alejandro','Arriagada',138829,'salvador','profesor','desarrollo de software','2do año','desarrollo full stack')
-// console.log (estudiante1);
-// profesor1.agregarEstudiante(estudiante1);
-// profesor1.tomarAsistencia()
-// console.log(estudiante1.asistencia);
-//console.log (personal1);
-//console.log (profesor1);
-//estudiante1.solicitarEquivalencias();
-//console.log (estudiante1.equivalencias);
-//personal1.ordenarAulas();
+// const personal1 = new PersonalServicio (1234,'Juan','Carlos',2345675,'Barrio las lajas','Personal de Servicio','porteria');
+// const estudiante1 = new Estudiante (567,'Maria','Lagos',123456,'Cordoba','estudiante',123123,'programacion','desarrollo full stack');
+// const profesor1 = new Profesor (23232,'Alejandro','Arriagada',138829,'salvador','profesor','desarrollo de software','2do año','desarrollo full stack')
+//  console.log (estudiante1);
+//  profesor1.agregarEstudiante(estudiante1);
+//  profesor1.tomarAsistencia()
+//  console.log(estudiante1.asistencia);
+// console.log (personal1);
+// console.log (profesor1);
+// estudiante1.solicitarEquivalencias();
+// console.log (estudiante1.equivalencias);
+// personal1.ordenarAulas();
 // const centro = new CentroEducativo();
 
-//  const persona1 = new Persona("Juan", "Pérez", "12345678A", "soltero");
- const persona2 = new Empleado("María", "González", "87654321B", "casado", 2020, 123);
- const persona3 = new Estudiante("Carlos", "Rodríguez", "45678901C", "soltero", "Informática");
- const persona4 = new Profesor("Ana", "López", "98765432D", "casado", 2015, 456, "Matemáticas");
- const persona5 = new PersonalServicio("Pedro", "Gómez", "65412378E", "soltero", 2018, 789, "Administración");
+//  const persona2 = new Empleado("María", "González", "87654321B", "casado", 2020, 123);
+//  const persona3 = new Estudiante("Carlos", "Rodríguez", "45678901C", "soltero", "Informática");
+//  const persona4 = new Profesor("Ana", "López", "98765432D", "casado", 2015, 456, "Matemáticas");
+//  const persona5 = new PersonalServicio("Pedro", "Gómez", "65412378E", "soltero", 2018, 789, "Administración");
 
-// centro.altaPersona(persona1);
-// centro.altaPersona(persona2);
-// centro.altaPersona(persona3);
-// centro.altaPersona(persona4);
-// centro.altaPersona(persona5);
+//  centro.altaPersona(persona1);
+//  centro.altaPersona(persona2);
+//  centro.altaPersona(persona3);
+//  centro.altaPersona(persona4);
+//  centro.altaPersona(persona5);
 
-// centro.imprimirInformacion();
+//  centro.imprimirInformacion();
+
+
