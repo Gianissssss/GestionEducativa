@@ -29,7 +29,6 @@ class Empleado extends Persona {
         this.numDespacho =numDespacho;
     }
     reasignarDespacho(nuevoNumDespacho) {
-        let nuevoNumDespacho = prompt("Igrese nuevo numero de despacho");
         this.numDespacho = nuevoNumDespacho;
         alert("Se asigno un numero de despacho");
       }
@@ -56,7 +55,6 @@ class Estudiante extends Persona {
     }
 
     cambiarCurso(nuevoCurso) {
-        let nuevoCurso = prompt("Ingrese nuevo curso");
         this.cursoMatriculado = nuevoCurso;
         alert("Se asigno un nuevo curso");
     }
@@ -96,7 +94,6 @@ class Profesor extends Empleado {
     }
 
     cambiarDepartamento(nuevoDepartamento) {
-        let nuevoDepartamento = prompt("Ingrese un nuevo departamento");
         this.departamento = nuevoDepartamento;
         alert("Se cambio a un nuevo departamento");
     }
@@ -107,7 +104,6 @@ class Profesor extends Empleado {
     }
 
     agregarEstudiante(estudiante){
-        let estudiante = prompt("Ingrese nombre del nuevo estudiante");
         this.estudiantes.push(estudiante);
         alert("El estudiante ha sido agregado con exito");
     }
@@ -135,7 +131,6 @@ class PersonalServicio extends Empleado {
     }
 
     cambiarSeccion(nuevaSeccion) {
-        let nuevaSeccion = prompt("Ingrese la nueva seccion");
         this.seccionAsignada = nuevaSeccion;
         alert("Se ha cambiado la seccion con exito");
     }
@@ -176,7 +171,6 @@ class CentroEducativo {
     }
   
     darDeAltaPersona(persona) {
-        let persona = prompt("Ingrese nueva persona");
       this.personas.push(persona);
       alert("La persona ha sido agregada con exito");
 
@@ -195,20 +189,19 @@ class CentroEducativo {
     }
   
     buscarPersona(numeroIdentificacion) {
-      let  numeroIdentificacion = prompt("Ingrese numero de identificacion");
       alert("La persona es: ");
       return this.personas.find(persona => persona.numeroIdentificacion === numeroIdentificacion);
       
     }
   
     filtrarPersonas(tipoPersona) {
-        let tipoPersona = prompt("Ingrese el tipo de persona: estudiante, profesor, personalservicio");
       return this.personas.filter(persona => persona instanceof tipoPersona);
     }
 
     
   }
 
+ 
 
 //ejemplos
 // const personal1 = new PersonalServicio (1234,'Juan','Carlos',2345675,'Barrio las lajas','Personal de Servicio','porteria');
