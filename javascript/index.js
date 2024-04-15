@@ -1,5 +1,5 @@
 //Creamos las clases Persona, Estudiante, Profesor y PersonalServicio
-//CLASE PERSONA
+//CLASE PERSONAa
 class Persona {
     constructor( nombre, apellidos, numId,estadoCivil) {
         this.nombre = nombre;
