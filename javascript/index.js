@@ -201,7 +201,44 @@ class CentroEducativo {
     
   }
 
- 
+const studentForm = document.getElementById('studentForm');
+const studentTableBody = document.getElementById('studentTable').getElementsByTagName('tbody')[0];
+
+let students = [];
+
+studentForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const nombre = document.getElementById('nombre').value;
+  const apellidos = document.getElementById('apellidos').value;
+  const numId = document.getElementById('numId').value;
+  const estadoCivil = document.getElementById('estadoCivil').value;
+  const cursoMatriculado = document.getElementById('cursoMatriculado').value;
+  const carrera = document.getElementById('carrera').value;
+
+  const newStudent = {
+    nombre,
+    apellidos,
+    numId,
+    estadoCivil,
+    cursoMatriculado,
+    carrera
+  };
+
+  students.push(newStudent);
+
+  const newRow = studentTableBody.insertRow();
+
+  for (const key in newStudent) {
+    const newCell = newRow.insertCell();
+    const newText = document.createTextNode(newStudent[key]);
+    newCell.appendChild(newText);
+  }
+
+  document.getElementById('studentForm').reset();
+
+  alert('Se ha creado el estudiante.');
+});
 
 //ejemplos
 // const personal1 = new PersonalServicio (1234,'Juan','Carlos',2345675,'Barrio las lajas','Personal de Servicio','porteria');

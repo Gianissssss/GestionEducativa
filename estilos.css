@@ -26,34 +26,41 @@ main {
     display: block;
     unicode-bidi: isolate;
 }
-
-table{
-    color: black;
-    background-color: rgb(255, 255, 255);
-    text-align: center;
-    align-items: center;
-    display: inline-block;
-    padding: 3px;
-    border-radius: 5px;
-}
-table thead{
-    background-color:#0e0f4b;
-    color: aliceblue;
-    margin: 5px;
-}
-table thead tr th{
-    padding: 5px;
-}
-
-table tbody{
-    margin: 5px;
-}
-
-body{
-    margin-top:20px;
-    color: #3b8f6c;
+table {     
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 15px;    
+    margin: 45px;     
+    width: 800px; 
     text-align: left;
-    background-color: #e2e8f0;    
+    border-collapse: collapse; 
+}
+
+th {   
+    font-size: 13px;     
+    font-weight: bold;     
+    padding: 8px;     
+    background: #b9c9fe;
+    border-top: 4px solid #aabcfe;    
+    border-bottom: 1px solid #fff; 
+    color: #039; 
+}
+
+td {    
+    padding: 8px;     
+    background: #e8edff;     
+    border-bottom: 1px solid #fff;
+    color: #669;    
+    border-top: 1px solid transparent; }
+
+tr:hover td { 
+    background: #d0dafd; 
+    color: #339; 
+}
+
+.container-table{
+    display: grid;
+    place-items: center;
+    margin: auto;
 }
 .main-body {
     padding: 15px;

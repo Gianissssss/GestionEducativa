@@ -16,7 +16,7 @@ const users = [
   
     if (user) {
       alert('Iniciaste sesion.');
-      location.href="index.html";
+      location.href="estudiante.html";
     } else {
       alert('Email invalido.');
     }
